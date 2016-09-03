@@ -1,51 +1,168 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>密碼管理程式</title>
 <script src="js/jquery.js"></script>
 <script src="js/seedrandom.js"></script>
+  
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+ 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+  
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 <style>
 #randomTable {
     font-family: monospace;
     font-size: 2.0em;
 }
+
+// 作為類別
+.center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// 作為 mixin
+.element {
+  .center-block();
+}
+
+
+.box {
+	position: fixed;
+	top: -200px;
+	left: 30%;
+	width: 450px;
+	background-color: #fff;
+	color: #7F7F7F;
+	padding: 20px;
+	border: 2px solid #ccc;
+	-moz-border-radius: 20px;
+	-webkit-border-radius: 20px;
+	-khtml-border-radius: 20px;
+	-moz-box-shadow: 0 1px 5px #333;
+	-webkit-box-shadow: 0 1px 5px #333;
+	z-index: 101;
+	-webkit-transition: top 3s ease-out;
+	-ms-transition: top 3s ease-out;
+	transition: top 3s ease-out;
+}
+
+.box h1 {
+	border-bottom: 1px dashed #7F7F7F;
+	margin: -20px -20px 0px -20px;
+	padding: 10px;
+	background-color: #FFEFEF;
+	color: #EF7777;
+	-moz-border-radius: 20px 20px 0px 0px;
+	-webkit-border-top-left-radius: 20px;
+	-webkit-border-top-right-radius: 20px;
+	-khtml-border-top-left-radius: 20px;
+	-khtml-border-top-right-radius: 20px;
+}
+
+a.boxclose {
+	float: right;
+	width: 26px;
+	height: 26px;
+	background: transparent url(images/cancel.png) repeat top left;
+	margin-top: -30px;
+	margin-right: -30px;
+	cursor: pointer;
+}
+p{
+    font-family:Microsoft JhengHei
+
+}
+
+h1{
+    font-family:Microsoft JhengHei
+
+}
+
 </style>
 </head>
 <body>
+      
+    <form class="navbar-form " role="search">
+        <div class="form-group">
+              <label>請輸入亂數表的編號：</label>
+              <input type="text" class="form-control" id="txtSeed" placeholder="請輸入亂數表的編號" value="1234">
+            <input type="button" class="btn btn-default" onclick="doAnimateShow()" ; value="說明" />
+        
+            <input type="button"  class="btn btn-default" id="btnGo" value="產生亂數表"/>
+            <div class="alert-success" role="alert" id="randomTable"></div>
 
-請輸入亂數表的編號：<input type="text" id="txtSeed" value="1234" />
-&nbsp;<input type="button" id="btnGo" value="產生亂數表" />
+        </div>
+    </form>   
+    
+     
+   
 
-<div id="randomTable">
-</div>
+        <!--<label>請輸入亂數表的編號：</label>
+        <input type="text" class="form" id="txtSeed" placeholder="輸入亂數表的編號" value="1234" />
 
-<script>
+        <input type="button" class="btn btn-md btn-success" id="btnGo" value="產生亂數表" />
 
-$("#btnGo").click(function () {
-    var result = "";
-	// 純數字:
-	var sPool = "0123456789";
-    // 數字+小寫字母: (去除 l, o)
-    // var sPool = "abcdefghijkmnpqrstuvwxyz0123456789";
-    // 數字+大小寫字母: (去除 I, O, l, o)
-    // var sPool = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz0123456789";
+        <div class="alert-success" role="alert" id="randomTable">
+        </div>-->
 
-    Math.seedrandom($("#txtSeed").val()); // 設定亂數種子
-	var iRandom = 0; var ch = "?";
-	for (iRow = 1; iRow <= 10; iRow++) {
-		var sLine = (iRow + 100).toString().substr(1, 2) + ": ";
-		for (iCol = 1; iCol <= 10; iCol++) {
-			iRandom = Math.floor(Math.random() * sPool.length);
-			ch = sPool.substr(iRandom, 1);
-			sLine += ch;
+        <script>
+
+            $("#btnGo").click(function () {
+                var result = "";
+                // 純數字:
+                // var sPool = "0123456789";
+                // 數字+小寫字母: (去除 l, o)
+                // var sPool = "abcdefghijkmnpqrstuvwxyz0123456789";
+                // 數字+大小寫字母: (去除 I, O, l, o)
+                 var sPool = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz0123456789";
+
+                Math.seedrandom($("#txtSeed").val()); // 設定亂數種子
+                var iRandom = 0; var ch = "?";
+                for (iRow = 1; iRow <= 10; iRow++) {
+                    var sLine = (iRow + 100).toString().substr(1, 2) + ": ";
+                    for (iCol = 1; iCol <= 10; iCol++) {
+                        iRandom = Math.floor(Math.random() * sPool.length);
+                        ch = sPool.substr(iRandom, 1);
+                        sLine += ch;
+                    }
+                    result += sLine + "<br>";
+                }
+                $("#randomTable").html(result);
+            });
+            
+        </script>
+
+
+    
+    
+    
+    <div class="box" id="box">
+        <a class="boxclose" id="boxclose"></a>
+        <h1>說明</h1>
+        <p>
+            步驟1.輸入一串亂數表的編號。<br />
+            步驟2.按下產生亂數表的按鈕。<br />
+            步驟3.對照自己設想的密碼。
+        </p>
+    </div>
+
+    <script>
+		function doAnimateShow() {
+			document.getElementById("box").style.top = "200px";
 		}
-		result += sLine + "<br>";
-	}
-	$("#randomTable").html(result);
-});
 
-</script>
+		function doAnimateHide() {
+			document.getElementById("box").style.top = "-200px";
+		}
+
+		document.getElementById("boxclose").onclick = doAnimateHide;
+
+    </script>
 
 </body>
+
 </html>
