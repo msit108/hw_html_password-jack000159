@@ -79,6 +79,7 @@ p{
 
 h1{
     font-family:Microsoft JhengHei
+    
 
 }
 
@@ -89,16 +90,29 @@ h1{
     <form class="navbar-form " role="search">
         <div class="form-group">
               <label>請輸入亂數表的編號：</label>
-              <input type="text" class="form-control" id="txtSeed" placeholder="請輸入亂數表的編號" value="1234">
-            <input type="button" class="btn btn-default" onclick="doAnimateShow()" ; value="說明" />
-        
-            <input type="button"  class="btn btn-default" id="btnGo" value="產生亂數表"/>
-            <div class="alert-success" role="alert" id="randomTable"></div>
-
+              <input type="text" class="form-control" id="txtSeed" placeholder="請輸入亂數表的編號">
+            <button type="button" class="btn btn-default" aria-label="Left Align" onclick="doAnimateShow()">
+                <span class="glyphicon glyphicon-question-sign " aria-hidden="true"></span>
+            </button>
+            <!--<input type="button" class="btn btn-default"  onclick="doAnimateShow()"  value="說明"/>-->
+            <button type="reset" class="btn btn-default" aria-hidden="true">
+                <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>重設
+            </button> 
+            <input type="button"  class="btn btn-primary"  id="btnGo" value="產生亂數表"/>
         </div>
     </form>   
     
-     
+    <div class="alert-success" role="alert" id="randomTable"></div>
+ 
+    
+    
+    
+    
+    <!--<div class="alert alert-danger" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+        Enter a valid email address
+    </div>-->
    
 
         <!--<label>請輸入亂數表的編號：</label>
@@ -132,6 +146,9 @@ h1{
                     result += sLine + "<br>";
                 }
                 $("#randomTable").html(result);
+
+                
+
             });
             
         </script>
@@ -140,7 +157,7 @@ h1{
     
     
     
-    <div class="box" id="box">
+    <div class="box"  id="box">
         <a class="boxclose" id="boxclose"></a>
         <h1>說明</h1>
         <p>
